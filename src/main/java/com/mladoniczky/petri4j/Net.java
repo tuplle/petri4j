@@ -76,7 +76,7 @@ public class Net {
     }
 
     public long[] testState() {
-        transitions.forEach((id, transitions) -> transitions.test());
+        transitions.forEach((id, transition) -> transition.test());
         return getMarking();
     }
 
@@ -91,6 +91,7 @@ public class Net {
                 ((Place) arc.getTarget()).addInputArc((OutputArc) arc);
             }
         });
+        transitions.forEach((id, t) -> t.test());
         executable = true;
     }
 

@@ -79,7 +79,7 @@ public class PetriflowParser implements Parser {
                     }
                     break;
                 default:
-                    System.out.println("Unsupported arc type: " + arc.getType().value());
+//                    System.out.println("Unsupported arc type: " + arc.getType().value());
             }
             parsed.addArc(parsedArc);
         });

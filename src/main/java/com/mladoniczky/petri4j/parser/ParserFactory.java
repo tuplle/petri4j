@@ -17,14 +17,23 @@ public class ParserFactory {
         return instance;
     }
 
-    public Parser getParser(ParsingFormat parsingFormat) {
-        switch (parsingFormat) {
+    public Parser getParser(String parsingFormat) {
+        try {
+            ParsingFormat format = ParsingFormat.valueOf(parsingFormat.toUpperCase());
+            return getParser(format);
+        } catch (IllegalArgumentException e) {
+            throw new UnsupportedOperationException(parsingFormat + "is not supported parsing format!", e);
+        }
+    }
+
+    public Parser getParser(ParsingFormat format) {
+        switch (format) {
             case PETRIFLOW:
                 return new PetriflowParser();
             case JSON:
                 return new JsonParser();
             default:
-                throw new UnsupportedOperationException(parsingFormat + "is not supported parsing format");
+                throw new UnsupportedOperationException(format + "is not supported parsing format");
         }
     }
 
