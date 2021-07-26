@@ -51,8 +51,8 @@ public class PetriflowParser implements Parser {
     }
 
     private Net parsePetriflowDocument(Document document) {
-        Net parsed = new Net(document.getId());
-        document.getPlace().forEach(place -> parsed.addPlace(new Place(place.getId(), place.getLabel().getValue(), (long) place.getTokens())));
+        Net parsed = new Net(document.getId(), document.getTitle().getValue());
+        document.getPlace().forEach(place -> parsed.addPlace(new Place(place.getId(), place.getLabel().getValue(), place.getTokens())));
         document.getTransition().forEach(transition -> parsed.addTransition(new Transition(transition.getId(), transition.getLabel().getValue())));
         document.getArc().forEach(arc -> {
             Arc parsedArc = null;

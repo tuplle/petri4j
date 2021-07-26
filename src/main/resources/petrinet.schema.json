@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/mladoniczky/petri4j/tree/master/src/main/resources/petrinet.schema.json",
+  "type": "object",
+  "title": "Petri Net schema",
+  "description": "The Petri Net json schema accepted by Petri4J library.",
+  "default": {},
+  "examples": [
+    {
+      "id": "507f1f77bcf86cd799439011",
+      "name": "Your awesome net",
+      "transitions": [
+        {
+          "id": "T1",
+          "name": "Transition 1"
+        }
+      ],
+      "places": [
+        {
+          "id": "P2",
+          "name": "Place 2",
+          "resources": 1
+        }
+      ],
+      "arcs": [
+        {
+          "id": "A1",
+          "type": "regular",
+          "source": "P2",
+          "target": "T1",
+          "weight": 1
+        }
+      ]
+    }
+  ],
+  "required": [
+    "name",
+    "transitions",
+    "places",
+    "arcs"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The net's id",
+      "description": "Generated id of the Petri net.",
+      "default": "",
+      "examples": [
+        "507f1f77bcf86cd799439011"
+      ]
+    },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The net's name",
+      "description": "The name of the net to better identify the net.",
+      "default": "",
+      "examples": [
+        "Some net"
+      ]
+    },
+    "transitions": {
+      "$id": "#/properties/transitions",
+      "type": "array",
+      "title": "Transitions of the net",
+      "description": "A set of transitions of the net.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": "T1",
+            "name": "Transition 1"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/transitions/items",
+        "type": "object",
+        "title": "A transition of the net",
+        "description": "A transition definition of the net.",
+        "default": {},
+        "examples": [
+          {
+            "id": "T1",
+            "name": "Transition 1"
+          }
+        ],
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/transitions/items/anyOf/0/properties/id",
+            "type": "string",
+            "title": "The id of the transition",
+            "description": "User defined id of the transition. It must be unique within transitions.",
+            "default": "",
+            "examples": [
+              "T1"
+            ]
+          },
+          "name": {
+            "$id": "#/properties/transitions/items/anyOf/0/properties/name",
+            "type": "string",
+            "title": "The name of the transition",
+            "description": "",
+            "default": "",
+            "examples": [
+              "Transition 1"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "places": {
+      "$id": "#/properties/places",
+      "type": "array",
+      "title": "The places of the net",
+      "description": "A set of places of the Petri net.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": "P2",
+            "name": "Place 2",
+            "resources": 1
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/places/items",
+        "type": "object",
+        "title": "A place of the net",
+        "description": "Definition of a place of the net.",
+        "default": {},
+        "examples": [
+          {
+            "id": "P2",
+            "name": "Place 2",
+            "resources": 1
+          }
+        ],
+        "required": [
+          "id",
+          "name",
+          "resources"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/places/items/anyOf/0/properties/id",
+            "type": "string",
+            "title": "The id of the place",
+            "description": "User defined id of the place.",
+            "default": "",
+            "examples": [
+              "P2"
+            ]
+          },
+          "name": {
+            "$id": "#/properties/places/items/anyOf/0/properties/name",
+            "type": "string",
+            "title": "The name of the place",
+            "description": "",
+            "default": "",
+            "examples": [
+              "Place 2"
+            ]
+          },
+          "resources": {
+            "$id": "#/properties/places/items/anyOf/0/properties/resources",
+            "type": "integer",
+            "title": "The number of resources of the place",
+            "description": "Initial number of resources in the place",
+            "minimum": 0,
+            "default": 0,
+            "examples": [
+              1
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "arcs": {
+      "$id": "#/properties/arcs",
+      "type": "array",
+      "title": "The arcs of the net",
+      "description": "A set of arcs of the net.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": "A1",
+            "type": "regular",
+            "source": "P2",
+            "target": "T1",
+            "weight": 1
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/arcs/items",
+        "type": "object",
+        "title": "An arc of the net",
+        "description": "Definition of an arc of the net.",
+        "default": {},
+        "examples": [
+          {
+            "id": "A1",
+            "type": "regular",
+            "source": "P2",
+            "target": "T1",
+            "weight": 1
+          }
+        ],
+        "required": [
+          "id",
+          "type",
+          "source",
+          "target"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/arcs/items/anyOf/0/properties/id",
+            "type": "string",
+            "title": "The id of the arc",
+            "description": "User defined id of the arc of the net.",
+            "default": "",
+            "examples": [
+              "A1"
+            ]
+          },
+          "type": {
+            "$id": "#/properties/arcs/items/anyOf/0/properties/type",
+            "type": "string",
+            "title": "The type of the arc",
+            "description": "One of the available types of the arc.",
+            "enum": [
+              "regular",
+              "inhibitor",
+              "reset",
+              "read"
+            ],
+            "default": "",
+            "examples": [
+              "regular"
+            ]
+          },
+          "source": {
+            "$id": "#/properties/arcs/items/anyOf/0/properties/source",
+            "type": "string",
+            "title": "The id of a source node of the net",
+            "description": "The id of a source node. Source node can be a transition or a place.",
+            "default": "",
+            "examples": [
+              "P2"
+            ]
+          },
+          "target": {
+            "$id": "#/properties/arcs/items/anyOf/0/properties/target",
+            "type": "string",
+            "title": "The id of a target node of the net",
+            "description": "The id of a target node. Target node can be a transition or a place.",
+            "default": "",
+            "examples": [
+              "T1"
+            ]
+          },
+          "weight": {
+            "$id": "#/properties/arcs/items/anyOf/0/properties/weight",
+            "type": "integer",
+            "title": "The weight of the arc",
+            "description": "",
+            "minimum": 0,
+            "default": 1,
+            "examples": [
+              1
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

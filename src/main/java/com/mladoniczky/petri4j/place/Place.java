@@ -28,6 +28,10 @@ public class Place extends Node {
         this.resources = resources;
     }
 
+    public Place(String id, String name, Integer resources) {
+        this(id, name, resources.longValue());
+    }
+
     private void initialize() {
         resources = 0L;
         inputArcs = new HashMap<>();

@@ -12,11 +12,14 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Data
 public class Net {
 
+    @Setter(AccessLevel.NONE)
+    private String id;
     private String name;
 
     private Map<String, Place> places;
@@ -30,7 +33,13 @@ public class Net {
         places = new HashMap<>();
         transitions = new HashMap<>();
         arcs = new HashMap<>();
+        id = UUID.randomUUID().toString();
         executable = false;
+    }
+
+    public Net(String id, String name) {
+        this(name);
+        this.id = id;
     }
 
     public Net(String name) {

@@ -1,0 +1,26 @@
+{
+  "id": "507f1f77bcf86cd799439011",
+  "name": "Your awesome net",
+  "transitions": [
+    {
+      "id": "T1",
+      "name": "Transition 1"
+    }
+  ],
+  "places": [
+    {
+      "id": "P2",
+      "name": "Place 2",
+      "resources": 1
+    }
+  ],
+  "arcs": [
+    {
+      "id": "A1",
+      "type": "regular",
+      "source": "P2",
+      "target": "T1",
+      "weight": 1
+    }
+  ]
+}

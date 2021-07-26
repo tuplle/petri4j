@@ -9,29 +9,27 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PetriflowParserTest {
+public class JsonParserTest {
 
     @BeforeAll
     static void setup() {
-
     }
 
     @Test
-    void shouldParsePetriflow() {
+    void shouldParseJsonPetriNet() {
         ParserFactory factory = ParserFactory.getInstance();
-        Parser parser = factory.getParser(ParsingFormat.PETRIFLOW);
-        Net net = parser.parse("src/test/resources/atm-withdraw.xml");
+        Parser parser = factory.getParser(ParsingFormat.JSON);
+        Net net = parser.parse("src/test/resources/example.json");
 
         assertNotNull(net);
-        assertEquals("atm-withdraw",net.getId());
-        assertEquals("ATM Withdraw", net.getName());
-        assertEquals(11, net.getPlaces().size());
-        assertEquals(6, net.getTransitions().size());
-        assertEquals(24, net.getArcs().size());
-        assertEquals(TransitionState.ENABLED, net.getTransitions().get("t1").getState());
+        assertEquals("507f1f77bcf86cd799439011", net.getId());
+        assertEquals("Your awesome net", net.getName());
+        assertEquals(1, net.getPlaces().size());
+        assertEquals(1, net.getTransitions().size());
+        assertEquals(1, net.getArcs().size());
+        assertEquals(TransitionState.ENABLED, net.getTransitions().get("T1").getState());
         assertTrue(net.isExecutable());
         assertTrue(net.getArcs().values().stream().allMatch(a -> a instanceof RegularInputArc || a instanceof RegularOutputArc));
     }
-
 
 }

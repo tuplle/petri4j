@@ -47,6 +47,19 @@
       <version>${jaxb.version}</version>
     </dependency>
 
+    <!--    JSON PARSING-->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.12.3</version>
+    </dependency>
+
+    <!--    TESTING-->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
@@ -85,6 +98,22 @@
             <source>src/main/resources/petriflow.schema.xsd</source>
           </sources>
           <packageName>com.mladoniczky.petri4j.parser.petriflow.model</packageName>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jsonschema2pojo</groupId>
+        <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <sourceDirectory>${basedir}/src/main/resources/petrinet.schema.json</sourceDirectory>
+          <targetPackage>com.mladoniczky.petri4j.parser.json.model</targetPackage>
         </configuration>
       </plugin>
     </plugins>
