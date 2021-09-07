@@ -20,6 +20,8 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <jaxb.version>2.3.1</jaxb.version>
     <junit.version>5.7.1</junit.version>
+    <sonar.organization>mladoniczky-github</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <dependencies>
