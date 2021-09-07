@@ -38,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B --update-snapshots --file pom.xml verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mladoniczky_petri4j
+          mvn -B --update-snapshots --file pom.xml verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mladoniczky_petri4j -Dsonar.junit.reportPaths=target/surefire-reports/*.xml
           mkdir staging && cp target/*.jar staging
       - name: Upload artifact
         uses: actions/upload-artifact@v2
