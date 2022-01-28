@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+          xsi:noNamespaceSchemaLocation="https://petriflow.com/petriflow.schema.xsd">
   <id>atm-withdraw</id>
   <initials>ATM</initials>
   <title>ATM Withdraw</title>
@@ -17,55 +17,55 @@
     <id>t1</id>
     <x>180</x>
     <y>140</y>
+    <label>Insert card</label>
     <layout>
       <offset>0</offset>
     </layout>
-    <label>Insert card</label>
   </transition>
   <transition>
     <id>t2</id>
     <x>540</x>
     <y>180</y>
+    <label>Request cash</label>
     <layout>
       <offset>0</offset>
     </layout>
-    <label>Request cash</label>
   </transition>
   <transition>
     <id>t3</id>
     <x>180</x>
     <y>380</y>
+    <label>Enter code</label>
     <layout>
       <offset>0</offset>
     </layout>
-    <label>Enter code</label>
   </transition>
   <transition>
     <id>t4</id>
     <x>540</x>
     <y>380</y>
+    <label>Select amount</label>
     <layout>
       <offset>0</offset>
     </layout>
-    <label>Select amount</label>
   </transition>
   <transition>
     <id>t5</id>
     <x>540</x>
     <y>620</y>
+    <label>Withdraw cash</label>
     <layout>
       <offset>0</offset>
     </layout>
-    <label>Withdraw cash</label>
   </transition>
   <transition>
     <id>t6</id>
     <x>180</x>
     <y>620</y>
+    <label>Withdraw card</label>
     <layout>
       <offset>0</offset>
     </layout>
-    <label>Withdraw card</label>
   </transition>
   <!-- PLACES -->
   <place>
@@ -104,7 +104,7 @@
     <id>p5</id>
     <x>420</x>
     <y>260</y>
-    <label></label>
+    <label/>
     <tokens>1</tokens>
     <static>false</static>
   </place>
@@ -112,7 +112,7 @@
     <id>p6</id>
     <x>580</x>
     <y>260</y>
-    <label></label>
+    <label/>
     <tokens>0</tokens>
     <static>false</static>
   </place>
@@ -254,10 +254,10 @@
     <sourceId>t6</sourceId>
     <destinationId>p1</destinationId>
     <multiplicity>1</multiplicity>
-    <breakPoint>
+    <breakpoint>
       <x>60</x>
       <y>460</y>
-    </breakPoint>
+    </breakpoint>
   </arc>
   <arc>
     <id>a15</id>
