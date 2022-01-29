@@ -1,0 +1,65 @@
+# This CI workflow will build and publish the library to the Maven Central Repository and GitHub packages
+
+name: Release and publish on Maven central and Github packages
+on:
+  release:
+    types:
+      - created
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java for GitHub
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Publish to GitHub packages
+        run: mvn -B -P publish-github --update-snapshots --file pom.xml deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #      - name: Setup Java for Maven central
+      #        uses: actions/setup-java@v2
+      #        with:
+      #          java-version: '11'
+      #          distribution: 'adopt'
+      #          server-id: ossrh
+      #          server-username: MAVEN_USERNAME
+      #          server-password: MAVEN_PASSWORD
+      #      - name: Publish to Maven Central
+      #        run: mvn -B -P publish-mvn-central --update-snapshots --file pom.xml deploy
+      #        env:
+      #          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      #          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+      - name: Zip artifacts
+        run: |
+          cd target
+          zip petri4j.zip *.jar
+      - uses: octokit/request-action@v2
+        id: get-latest-release
+        with:
+          route: GET /repos/:repository/releases/latest
+          repository: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get release upload url
+        id: get-upload-url
+        run: |
+          url=$(echo "$response" | jq -r '.upload_url')
+          echo "::set-output name=url::$url"
+        env:
+          response: ${{ steps.get-latest-release.outputs.data }}
+      - name: Upload artifact to the latest release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get-upload-url.outputs.url }}
+          asset_path: ./petri4j.zip
+          asset_name: petri4j.zip
+          # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
+          asset_content_type: application/zip
