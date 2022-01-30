@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OutputArc.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Petri4J</a> &gt; <a href="index.source.html" class="el_package">com.mladoniczky.petri4j.arc.output</a> &gt; <span class="el_source">OutputArc.java</span></div><h1>OutputArc.java</h1><pre class="source lang-java linenums">package com.mladoniczky.petri4j.arc.output;
+
+import com.mladoniczky.petri4j.arc.Arc;
+import com.mladoniczky.petri4j.arc.ArcType;
+import com.mladoniczky.petri4j.place.Place;
+import com.mladoniczky.petri4j.transition.Transition;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+<span class="nc bnc" id="L10" title="All 8 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+<span class="nc" id="L11">@Data</span>
+public abstract class OutputArc extends Arc&lt;Transition, Place&gt; {
+
+    public OutputArc() {
+<span class="nc" id="L15">        super();</span>
+<span class="nc" id="L16">    }</span>
+
+    public OutputArc(String id, ArcType type, Transition source, Place target) {
+<span class="fc" id="L19">        super(id, type, source, target);</span>
+<span class="fc" id="L20">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

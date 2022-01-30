@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegularOutputArc.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Petri4J</a> &gt; <a href="index.source.html" class="el_package">com.mladoniczky.petri4j.arc.output</a> &gt; <span class="el_source">RegularOutputArc.java</span></div><h1>RegularOutputArc.java</h1><pre class="source lang-java linenums">package com.mladoniczky.petri4j.arc.output;
+
+import com.mladoniczky.petri4j.arc.ArcType;
+import com.mladoniczky.petri4j.place.Place;
+import com.mladoniczky.petri4j.transition.Transition;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+<span class="nc bnc" id="L9" title="All 8 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+<span class="nc" id="L10">@Data</span>
+public class RegularOutputArc extends WeightedOutputArc {
+
+    public RegularOutputArc() {
+<span class="nc" id="L14">        super();</span>
+<span class="nc" id="L15">        type = ArcType.REGULAR;</span>
+<span class="nc" id="L16">    }</span>
+
+    public RegularOutputArc(Long weight) {
+<span class="nc" id="L19">        super(weight);</span>
+<span class="nc" id="L20">        type = ArcType.REGULAR;</span>
+<span class="nc" id="L21">    }</span>
+
+    public RegularOutputArc(String id, Transition source, Place target, Long weight) {
+<span class="fc" id="L24">        super(id, ArcType.REGULAR, source, target, weight);</span>
+<span class="fc" id="L25">    }</span>
+
+    @Override
+    public void moveResources() {
+<span class="nc" id="L29">        this.target.increase(weight);</span>
+<span class="nc" id="L30">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

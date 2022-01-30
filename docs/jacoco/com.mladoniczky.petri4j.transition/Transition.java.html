@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Transition.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Petri4J</a> &gt; <a href="index.source.html" class="el_package">com.mladoniczky.petri4j.transition</a> &gt; <span class="el_source">Transition.java</span></div><h1>Transition.java</h1><pre class="source lang-java linenums">package com.mladoniczky.petri4j.transition;
+
+import com.mladoniczky.petri4j.arc.input.InputArc;
+import com.mladoniczky.petri4j.arc.output.OutputArc;
+import com.mladoniczky.petri4j.generic.Node;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+
+import java.util.HashMap;
+import java.util.Map;
+
+<span class="nc bnc" id="L14" title="All 32 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+<span class="nc" id="L15">@Data</span>
+public class Transition extends Node {
+
+    @Setter(AccessLevel.NONE)
+<span class="fc" id="L19">    private TransitionState state;</span>
+<span class="nc" id="L20">    private Map&lt;String, InputArc&gt; inputArcs;</span>
+<span class="nc" id="L21">    private Map&lt;String, OutputArc&gt; outputArc;</span>
+
+    public Transition() {
+<span class="nc" id="L24">        super();</span>
+<span class="nc" id="L25">        initialize();</span>
+<span class="nc" id="L26">    }</span>
+
+    public Transition(String id, String title) {
+<span class="fc" id="L29">        super(id, title);</span>
+<span class="fc" id="L30">        initialize();</span>
+<span class="fc" id="L31">    }</span>
+
+    private void initialize() {
+<span class="fc" id="L34">        state = TransitionState.DISABLED;</span>
+<span class="fc" id="L35">        inputArcs = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L36">        outputArc = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L37">    }</span>
+
+    public void addInputArc(InputArc arc) {
+<span class="fc" id="L40">        inputArcs.put(arc.getId(), arc);</span>
+<span class="fc" id="L41">    }</span>
+
+    public void addOutputArc(OutputArc arc) {
+<span class="fc" id="L44">        outputArc.put(arc.getId(), arc);</span>
+<span class="fc" id="L45">    }</span>
+
+    public boolean isEnable() {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        return state == TransitionState.ENABLED;</span>
+    }
+
+    public boolean test() {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (inputArcs.isEmpty()) return true;</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if (state == TransitionState.TRIGGERED) return false;</span>
+<span class="fc" id="L54">        boolean hasEnoughResources = inputArcs.values().stream().allMatch(InputArc::test);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        state = hasEnoughResources ? TransitionState.ENABLED : TransitionState.DISABLED;</span>
+<span class="fc" id="L56">        return hasEnoughResources;</span>
+    }
+
+    public void consume() {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (!isEnable())</span>
+<span class="nc" id="L61">            throw new IllegalStateException(&quot;Transition [&quot; + this.id + &quot;] &quot; + this.name + &quot; cannot consume resources because is not enabled!&quot;);</span>
+<span class="nc" id="L62">        state = TransitionState.TRIGGERED;</span>
+<span class="nc" id="L63">        inputArcs.forEach((id, arc) -&gt; arc.moveResources());</span>
+<span class="nc" id="L64">    }</span>
+
+    public void produce() {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (state != TransitionState.TRIGGERED)</span>
+<span class="nc" id="L68">            throw new IllegalStateException(&quot;Transition [&quot; + this.id + &quot;] &quot; + this.name + &quot; cannot produce resources because is not triggered!&quot;);</span>
+<span class="nc" id="L69">        outputArc.forEach((id, arc) -&gt; arc.moveResources());</span>
+<span class="nc" id="L70">        state = TransitionState.DISABLED;</span>
+<span class="nc" id="L71">    }</span>
+
+    public void makeSerializable() {
+<span class="nc" id="L74">        inputArcs.clear();</span>
+<span class="nc" id="L75">        outputArc.clear();</span>
+<span class="nc" id="L76">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

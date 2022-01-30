@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Arc.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Petri4J</a> &gt; <a href="index.source.html" class="el_package">com.mladoniczky.petri4j.parser.json.model</a> &gt; <span class="el_source">Arc.java</span></div><h1>Arc.java</h1><pre class="source lang-java linenums">
+package com.mladoniczky.petri4j.parser.json.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+
+/**
+ * An arc of the net
+ * &lt;p&gt;
+ * Definition of an arc of the net.
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    &quot;id&quot;,
+    &quot;type&quot;,
+    &quot;source&quot;,
+    &quot;target&quot;,
+    &quot;weight&quot;
+})
+@Generated(&quot;jsonschema2pojo&quot;)
+<span class="fc" id="L33">public class Arc {</span>
+
+    /**
+     * The id of the arc
+     * &lt;p&gt;
+     * User defined id of the arc of the net.
+     * (Required)
+     * 
+     */
+<span class="fc" id="L42">    @JsonProperty(&quot;id&quot;)</span>
+    @JsonPropertyDescription(&quot;User defined id of the arc of the net.&quot;)
+    private String id = &quot;&quot;;
+    /**
+     * The type of the arc
+     * &lt;p&gt;
+     * One of the available types of the arc.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    @JsonPropertyDescription(&quot;One of the available types of the arc.&quot;)
+    private Arc.Type type;
+    /**
+     * The id of a source node of the net
+     * &lt;p&gt;
+     * The id of a source node. Source node can be a transition or a place.
+     * (Required)
+     * 
+     */
+<span class="fc" id="L62">    @JsonProperty(&quot;source&quot;)</span>
+    @JsonPropertyDescription(&quot;The id of a source node. Source node can be a transition or a place.&quot;)
+    private String source = &quot;&quot;;
+    /**
+     * The id of a target node of the net
+     * &lt;p&gt;
+     * The id of a target node. Target node can be a transition or a place.
+     * (Required)
+     * 
+     */
+<span class="fc" id="L72">    @JsonProperty(&quot;target&quot;)</span>
+    @JsonPropertyDescription(&quot;The id of a target node. Target node can be a transition or a place.&quot;)
+    private String target = &quot;&quot;;
+    /**
+     * The weight of the arc
+     * &lt;p&gt;
+     * 
+     * 
+     */
+<span class="fc" id="L81">    @JsonProperty(&quot;weight&quot;)</span>
+    @JsonPropertyDescription(&quot;&quot;)
+<span class="fc" id="L83">    private Integer weight = 1;</span>
+<span class="fc" id="L84">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * The id of the arc
+     * &lt;p&gt;
+     * User defined id of the arc of the net.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;id&quot;)
+    public String getId() {
+<span class="fc" id="L96">        return id;</span>
+    }
+
+    /**
+     * The id of the arc
+     * &lt;p&gt;
+     * User defined id of the arc of the net.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;id&quot;)
+    public void setId(String id) {
+<span class="fc" id="L108">        this.id = id;</span>
+<span class="fc" id="L109">    }</span>
+
+    /**
+     * The type of the arc
+     * &lt;p&gt;
+     * One of the available types of the arc.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    public Arc.Type getType() {
+<span class="fc" id="L120">        return type;</span>
+    }
+
+    /**
+     * The type of the arc
+     * &lt;p&gt;
+     * One of the available types of the arc.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(Arc.Type type) {
+<span class="fc" id="L132">        this.type = type;</span>
+<span class="fc" id="L133">    }</span>
+
+    /**
+     * The id of a source node of the net
+     * &lt;p&gt;
+     * The id of a source node. Source node can be a transition or a place.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;source&quot;)
+    public String getSource() {
+<span class="fc" id="L144">        return source;</span>
+    }
+
+    /**
+     * The id of a source node of the net
+     * &lt;p&gt;
+     * The id of a source node. Source node can be a transition or a place.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;source&quot;)
+    public void setSource(String source) {
+<span class="fc" id="L156">        this.source = source;</span>
+<span class="fc" id="L157">    }</span>
+
+    /**
+     * The id of a target node of the net
+     * &lt;p&gt;
+     * The id of a target node. Target node can be a transition or a place.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;target&quot;)
+    public String getTarget() {
+<span class="fc" id="L168">        return target;</span>
+    }
+
+    /**
+     * The id of a target node of the net
+     * &lt;p&gt;
+     * The id of a target node. Target node can be a transition or a place.
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;target&quot;)
+    public void setTarget(String target) {
+<span class="fc" id="L180">        this.target = target;</span>
+<span class="fc" id="L181">    }</span>
+
+    /**
+     * The weight of the arc
+     * &lt;p&gt;
+     * 
+     * 
+     */
+    @JsonProperty(&quot;weight&quot;)
+    public Integer getWeight() {
+<span class="fc" id="L191">        return weight;</span>
+    }
+
+    /**
+     * The weight of the arc
+     * &lt;p&gt;
+     * 
+     * 
+     */
+    @JsonProperty(&quot;weight&quot;)
+    public void setWeight(Integer weight) {
+<span class="fc" id="L202">        this.weight = weight;</span>
+<span class="fc" id="L203">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L207">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L212">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L213">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L217">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L218">        sb.append(Arc.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');</span>
+<span class="nc" id="L219">        sb.append(&quot;id&quot;);</span>
+<span class="nc" id="L220">        sb.append('=');</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        sb.append(((this.id == null)?&quot;&lt;null&gt;&quot;:this.id));</span>
+<span class="nc" id="L222">        sb.append(',');</span>
+<span class="nc" id="L223">        sb.append(&quot;type&quot;);</span>
+<span class="nc" id="L224">        sb.append('=');</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">        sb.append(((this.type == null)?&quot;&lt;null&gt;&quot;:this.type));</span>
+<span class="nc" id="L226">        sb.append(',');</span>
+<span class="nc" id="L227">        sb.append(&quot;source&quot;);</span>
+<span class="nc" id="L228">        sb.append('=');</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">        sb.append(((this.source == null)?&quot;&lt;null&gt;&quot;:this.source));</span>
+<span class="nc" id="L230">        sb.append(',');</span>
+<span class="nc" id="L231">        sb.append(&quot;target&quot;);</span>
+<span class="nc" id="L232">        sb.append('=');</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        sb.append(((this.target == null)?&quot;&lt;null&gt;&quot;:this.target));</span>
+<span class="nc" id="L234">        sb.append(',');</span>
+<span class="nc" id="L235">        sb.append(&quot;weight&quot;);</span>
+<span class="nc" id="L236">        sb.append('=');</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        sb.append(((this.weight == null)?&quot;&lt;null&gt;&quot;:this.weight));</span>
+<span class="nc" id="L238">        sb.append(',');</span>
+<span class="nc" id="L239">        sb.append(&quot;additionalProperties&quot;);</span>
+<span class="nc" id="L240">        sb.append('=');</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        sb.append(((this.additionalProperties == null)?&quot;&lt;null&gt;&quot;:this.additionalProperties));</span>
+<span class="nc" id="L242">        sb.append(',');</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">        if (sb.charAt((sb.length()- 1)) == ',') {</span>
+<span class="nc" id="L244">            sb.setCharAt((sb.length()- 1), ']');</span>
+        } else {
+<span class="nc" id="L246">            sb.append(']');</span>
+        }
+<span class="nc" id="L248">        return sb.toString();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L253">        int result = 1;</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        result = ((result* 31)+((this.weight == null)? 0 :this.weight.hashCode()));</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">        result = ((result* 31)+((this.source == null)? 0 :this.source.hashCode()));</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">        result = ((result* 31)+((this.type == null)? 0 :this.type.hashCode()));</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        result = ((result* 31)+((this.target == null)? 0 :this.target.hashCode()));</span>
+<span class="nc" id="L260">        return result;</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="nc bnc" id="L265" title="All 2 branches missed.">        if (other == this) {</span>
+<span class="nc" id="L266">            return true;</span>
+        }
+<span class="nc bnc" id="L268" title="All 2 branches missed.">        if ((other instanceof Arc) == false) {</span>
+<span class="nc" id="L269">            return false;</span>
+        }
+<span class="nc" id="L271">        Arc rhs = ((Arc) other);</span>
+<span class="nc bnc" id="L272" title="All 36 branches missed.">        return (((((((this.weight == rhs.weight)||((this.weight!= null)&amp;&amp;this.weight.equals(rhs.weight)))&amp;&amp;((this.id == rhs.id)||((this.id!= null)&amp;&amp;this.id.equals(rhs.id))))&amp;&amp;((this.source == rhs.source)||((this.source!= null)&amp;&amp;this.source.equals(rhs.source))))&amp;&amp;((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&amp;&amp;this.additionalProperties.equals(rhs.additionalProperties))))&amp;&amp;((this.type == rhs.type)||((this.type!= null)&amp;&amp;this.type.equals(rhs.type))))&amp;&amp;((this.target == rhs.target)||((this.target!= null)&amp;&amp;this.target.equals(rhs.target))));</span>
+    }
+
+
+    /**
+     * The type of the arc
+     * &lt;p&gt;
+     * One of the available types of the arc.
+     * 
+     */
+<span class="fc" id="L282">    @Generated(&quot;jsonschema2pojo&quot;)</span>
+    public enum Type {
+
+<span class="fc" id="L285">        REGULAR(&quot;regular&quot;),</span>
+<span class="fc" id="L286">        INHIBITOR(&quot;inhibitor&quot;),</span>
+<span class="fc" id="L287">        RESET(&quot;reset&quot;),</span>
+<span class="fc" id="L288">        READ(&quot;read&quot;);</span>
+        private final String value;
+<span class="fc" id="L290">        private final static Map&lt;String, Arc.Type&gt; CONSTANTS = new HashMap&lt;String, Arc.Type&gt;();</span>
+
+        static {
+<span class="fc bfc" id="L293" title="All 2 branches covered.">            for (Arc.Type c: values()) {</span>
+<span class="fc" id="L294">                CONSTANTS.put(c.value, c);</span>
+            }
+<span class="fc" id="L296">        }</span>
+
+<span class="fc" id="L298">        Type(String value) {</span>
+<span class="fc" id="L299">            this.value = value;</span>
+<span class="fc" id="L300">        }</span>
+
+        @Override
+        public String toString() {
+<span class="nc" id="L304">            return this.value;</span>
+        }
+
+        @JsonValue
+        public String value() {
+<span class="nc" id="L309">            return this.value;</span>
+        }
+
+        @JsonCreator
+        public static Arc.Type fromValue(String value) {
+<span class="fc" id="L314">            Arc.Type constant = CONSTANTS.get(value);</span>
+<span class="pc bpc" id="L315" title="1 of 2 branches missed.">            if (constant == null) {</span>
+<span class="nc" id="L316">                throw new IllegalArgumentException(value);</span>
+            } else {
+<span class="fc" id="L318">                return constant;</span>
+            }
+        }
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
