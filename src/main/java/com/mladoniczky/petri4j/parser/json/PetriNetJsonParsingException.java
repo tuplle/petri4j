@@ -1,6 +1,8 @@
 package com.mladoniczky.petri4j.parser.json;
 
-public class PetriNetJsonParsingException extends RuntimeException {
+import com.mladoniczky.petri4j.parser.ParsingException;
+
+public class PetriNetJsonParsingException extends ParsingException {
 
     public PetriNetJsonParsingException() {
         super("Parsing Petri Net json has failed.");

@@ -3,6 +3,8 @@ package com.mladoniczky.petri4j.parser;
 import com.mladoniczky.petri4j.parser.json.JsonParser;
 import com.mladoniczky.petri4j.parser.petriflow.PetriflowParser;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class ParserFactory {
 
     private static ParserFactory instance;
@@ -27,13 +29,10 @@ public class ParserFactory {
     }
 
     public Parser getParser(ParsingFormat format) {
-        switch (format) {
-            case PETRIFLOW:
-                return new PetriflowParser();
-            case JSON:
-                return new JsonParser();
-            default:
-                throw new UnsupportedOperationException(format + "is not supported parsing format");
+        try {
+            return (Parser) format.getParserClass().getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new ParsingException("Failed to initialize parser class", e);
         }
     }
 

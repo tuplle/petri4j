@@ -1,6 +1,8 @@
 package com.mladoniczky.petri4j.parser.petriflow;
 
-public class PetriflowParsingException extends RuntimeException {
+import com.mladoniczky.petri4j.parser.ParsingException;
+
+public class PetriflowParsingException extends ParsingException {
 
     public PetriflowParsingException() {
         super("Parsing petriflow process has failed.");
