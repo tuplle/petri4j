@@ -1,0 +1,9 @@
+.type pn 
+.transitions 
+t0
+.places 
+p0 1
+p1 4
+.arcs 
+p0 t0
+t0 p1

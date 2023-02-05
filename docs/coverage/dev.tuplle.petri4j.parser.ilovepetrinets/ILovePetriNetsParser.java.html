@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ILovePetriNetsParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Petri4J</a> &gt; <a href="index.source.html" class="el_package">dev.tuplle.petri4j.parser.ilovepetrinets</a> &gt; <span class="el_source">ILovePetriNetsParser.java</span></div><h1>ILovePetriNetsParser.java</h1><pre class="source lang-java linenums">package dev.tuplle.petri4j.parser.ilovepetrinets;
+
+import dev.tuplle.petri4j.Net;
+import dev.tuplle.petri4j.arc.Arc;
+import dev.tuplle.petri4j.arc.input.RegularInputArc;
+import dev.tuplle.petri4j.arc.output.RegularOutputArc;
+import dev.tuplle.petri4j.parser.Parser;
+import dev.tuplle.petri4j.parser.ParsingException;
+import dev.tuplle.petri4j.place.Place;
+import dev.tuplle.petri4j.transition.Transition;
+
+import java.io.*;
+import java.util.function.BiFunction;
+
+<span class="fc" id="L15">public class ILovePetriNetsParser implements Parser {</span>
+
+    private static final String TYPE_HEADER = &quot;.type&quot;;
+    private static final String TRANSITIONS_HEADER = &quot;.transitions&quot;;
+    private static final String PLACES_HEADER = &quot;.places&quot;;
+    private static final String ARCS_HEADER = &quot;.arcs&quot;;
+
+<span class="fc" id="L22">    private final BiFunction&lt;String, Net, Object&gt; parseTransition = (line, net) -&gt;</span>
+            // TODO check for valid transition id/line
+<span class="fc" id="L24">            new Transition(line, line);</span>
+
+<span class="fc" id="L26">    private final BiFunction&lt;String, Net, Object&gt; parsePlaces = (line, net) -&gt; {</span>
+<span class="fc" id="L27">        String[] parts = line.split(&quot; &quot;);</span>
+<span class="fc" id="L28">        Integer tokens = Integer.parseInt(parts[1]);</span>
+<span class="fc" id="L29">        return new Place(parts[0], parts[0], tokens);</span>
+    };
+
+<span class="fc" id="L32">    private final BiFunction&lt;String, Net, Object&gt; parseArc = (line, net) -&gt; {</span>
+<span class="fc" id="L33">        String[] parts = line.split(&quot; &quot;);</span>
+<span class="fc" id="L34">        Arc arc = null;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        Long w = parts.length &lt;= 2 ? 1L : Long.parseLong(parts[2]);</span>
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">        if (net.getPlaces().containsKey(parts[0]) &amp;&amp; net.getTransitions().containsKey(parts[1])) { //Input arc</span>
+<span class="fc" id="L37">            arc = processInputArc(net.getPlaces().get(parts[0]), net.getTransitions().get(parts[1]), w, net);</span>
+<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        } else if (net.getTransitions().containsKey(parts[0]) &amp;&amp; net.getPlaces().containsKey(parts[1])) { //Output arc</span>
+<span class="fc" id="L39">            arc = processOutputArc(net.getPlaces().get(parts[1]), net.getTransitions().get(parts[0]), w, net);</span>
+        } else {
+<span class="nc" id="L41">            throw new ParsingException(&quot;Could not create arcs for input: &quot; + line);</span>
+        }
+<span class="fc" id="L43">        return arc;</span>
+    };
+
+
+    @Override
+    public Net parse(String filename) {
+<span class="fc" id="L49">        return parse(new File(filename));</span>
+    }
+
+    @Override
+    public Net parse(File file) {
+        try {
+<span class="fc" id="L55">            return parse(new FileInputStream(file));</span>
+<span class="nc" id="L56">        } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L57">            throw new ParsingException(&quot;Parsing has failed!&quot;, e);</span>
+        }
+    }
+
+    @Override
+    public Net parse(InputStream inputStream) {
+<span class="fc" id="L63">        Net net = new Net();</span>
+
+<span class="fc" id="L65">        BiFunction&lt;String, Net, Object&gt; parsingFunction = null;</span>
+<span class="fc" id="L66">        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));</span>
+        while (true) {
+            try {
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                if (!reader.ready()) break;</span>
+<span class="fc" id="L70">                String line = reader.readLine();</span>
+
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                if (line.contains(TYPE_HEADER)) {</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">                    if (!line.contains(&quot;pn&quot;))</span>
+<span class="nc" id="L74">                        throw new ParsingException(&quot;Incorrect type of file. Expecting 'pn' found &quot; + line);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">                } else if (line.equals(TRANSITIONS_HEADER)) {</span>
+<span class="fc" id="L76">                    parsingFunction = parseTransition;</span>
+<span class="fc" id="L77">                    continue;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">                } else if (line.equals(PLACES_HEADER)) {</span>
+<span class="fc" id="L79">                    parsingFunction = parsePlaces;</span>
+<span class="fc" id="L80">                    continue;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                } else if (line.equals(ARCS_HEADER)) {</span>
+<span class="fc" id="L82">                    parsingFunction = parseArc;</span>
+<span class="fc" id="L83">                    continue;</span>
+                } else {
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">                    if (parsingFunction == null) continue;</span>
+<span class="fc" id="L86">                    Object o = parsingFunction.apply(line, net);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">                    if (o instanceof Transition) net.addTransition((Transition) o);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">                    else if (o instanceof Place) net.addPlace((Place) o);</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">                    else if (o instanceof Arc) net.addArc((Arc) o);</span>
+                }
+<span class="nc" id="L91">            } catch (IOException e) {</span>
+<span class="nc" id="L92">                throw new ParsingException(&quot;Parsing has failed!&quot;, e);</span>
+<span class="fc" id="L93">            }</span>
+        }
+
+<span class="fc" id="L96">        net.makeExecutable();</span>
+<span class="fc" id="L97">        return net;</span>
+    }
+
+    private RegularInputArc processInputArc(Place place, Transition transition, Long weight, Net net) {
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        Long w = weight == null ? 1L : weight;</span>
+<span class="fc" id="L102">        RegularInputArc ia = net.getArcs().values().stream()</span>
+<span class="fc" id="L103">                .filter(RegularInputArc.class::isInstance)</span>
+<span class="fc" id="L104">                .map(RegularInputArc.class::cast)</span>
+<span class="pc bpc" id="L105" title="1 of 4 branches missed.">                .filter(a -&gt; a.getSource() == place &amp;&amp; a.getTarget() == transition)</span>
+<span class="fc" id="L106">                .findFirst().orElse(null);</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (ia != null) {</span>
+<span class="nc" id="L108">            ia.setWeight(ia.getWeight() + w);</span>
+<span class="nc" id="L109">            return ia;</span>
+        }
+<span class="fc" id="L111">        return new RegularInputArc(place.getId() + &quot;-&quot; + transition.getId(), place, transition, w);</span>
+    }
+
+    private RegularOutputArc processOutputArc(Place place, Transition transition, Long weight, Net net) {
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">        Long w = weight == null ? 1L : weight;</span>
+<span class="fc" id="L116">        RegularOutputArc oa = net.getArcs().values().stream()</span>
+<span class="fc" id="L117">                .filter(RegularOutputArc.class::isInstance)</span>
+<span class="fc" id="L118">                .map(RegularOutputArc.class::cast)</span>
+<span class="pc bpc" id="L119" title="1 of 4 branches missed.">                .filter(a -&gt; a.getSource() == transition &amp;&amp; a.getTarget() == place)</span>
+<span class="fc" id="L120">                .findFirst().orElse(null);</span>
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">        if (oa != null) {</span>
+<span class="nc" id="L122">            oa.setWeight(oa.getWeight() + w);</span>
+<span class="nc" id="L123">            return oa;</span>
+        }
+<span class="fc" id="L125">        return new RegularOutputArc(transition.getId() + &quot;-&quot; + place.getId(), transition, place, w);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
