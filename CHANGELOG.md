@@ -4,15 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0](https://github.com/netgrif/petriflow.js/releases/tag/v1.0.0) (2022)
+## [1.1.0](https://github.com/tuplle/petri4j/releases/tag/v) (YYYY-MM-dd)
+
+### Added
+- parser for [ilovepetrinets](https://www.fernuni-hagen.de/ilovepetrinets/) format
+- new tests for more coverage
+- update to java 17
+
+### Security
+- update dependencies
+
+## [1.0.0](https://github.com/tuplle/petri4j/releases/tag/v1.0.0) (2022)
 
 First public release of the project.
 
-Full Changelog: [https://github.com/netgrif/petriflow.js/commits/v1.0.0](https://github.com/netgrif/petriflow.js/commits/v1.0.0)
+Full Changelog: [https://github.com/tuplle/petri4j/commits/v1.0.0](https://github.com/tuplle/petri4j/commits/v1.0.0)
 
 
 <!-- Template
-## [version](https://github.com/netgrif/petriflow.js/releases/tag/v) (YYYY-MM-dd)
+## [version](https://github.com/tuplle/petri4j/releases/tag/v) (YYYY-MM-dd)
 
 ### Added
  - for new features.
