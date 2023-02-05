@@ -1,4 +1,4 @@
-# How to contribute to Application Engine
+# How to contribute to Petri4J
 
 Petri4J is a lightweight java library to import Petri nets into your project/application.
 
@@ -14,8 +14,8 @@ kind, help make engine a community where new faces feel welcome and old hands fe
 ### Reporting bugs
 
 If you've found a bug, let us know about it.
-* Search the [Issues](https://github.com/mladoniczky/petri4j/issues) to check we're not already tracking it.
-* If you can't find an open issue that describes your problem, [open a new one](https://github.com/mladoniczky/petri4j/issues/new).
+* Search the [Issues](https://github.com/tuplle/petri4j/issues) to check we're not already tracking it.
+* If you can't find an open issue that describes your problem, [open a new one](https://github.com/tuplle/petri4j/issues/new).
     * Include a **title and clear description**
     * Describe:
         * What you did (ideally with a code sample)
@@ -35,8 +35,8 @@ If you've fixed an open bug - awesome!
 ### Contributing Features
 
 If you've got a great idea for the engine feature, start by checking
-[issues](https://github.com/mladoniczky/petri4j/issues) to check we're not already tracking it, or that your idea
+[issues](https://github.com/tuplle/petri4j/issues) to check we're not already tracking it, or that your idea
 hasn't already been rejected.
 
-If not, start by [opening an issue](https://github.com/mladoniczky/petri4j/issues/new) that describes your idea.
+If not, start by [opening an issue](https://github.com/tuplle/petri4j/issues/new) that describes your idea.
 Do not be afraid of rejection, every excellent idea has to start somewhere. Give it a well described solution to the problem which your proposition is trying to solve.

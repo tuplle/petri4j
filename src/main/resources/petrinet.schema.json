@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://github.com/mladoniczky/petri4j/tree/master/src/main/resources/petrinet.schema.json",
+  "$id": "https://github.com/tuplle/petri4j/tree/master/src/main/resources/petrinet.schema.json",
   "type": "object",
   "title": "Petri Net schema",
   "description": "The Petri Net json schema accepted by Petri4J library.",
