@@ -1,0 +1,13 @@
+dev.tuplle.petri4j
+dev.tuplle.petri4j.arc
+dev.tuplle.petri4j.arc.input
+dev.tuplle.petri4j.arc.output
+dev.tuplle.petri4j.generic
+dev.tuplle.petri4j.parser
+dev.tuplle.petri4j.parser.ilovepetrinets
+dev.tuplle.petri4j.parser.json
+dev.tuplle.petri4j.parser.json.model
+dev.tuplle.petri4j.parser.petriflow
+dev.tuplle.petri4j.parser.petriflow.model
+dev.tuplle.petri4j.place
+dev.tuplle.petri4j.transition
